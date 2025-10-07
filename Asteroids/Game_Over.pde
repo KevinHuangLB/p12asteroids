@@ -1,0 +1,6 @@
+void gameOverClicks(){
+  
+}
+void gameOver(){
+  
+}
