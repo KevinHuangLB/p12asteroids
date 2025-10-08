@@ -1,3 +1,5 @@
+import processing.javafx.*;
+
 
 // Color pallette
 color black = #000000;
@@ -13,15 +15,32 @@ final int PAUSE = 2;
 final int GAMEOVER = 3;
 
 // keyboard variables
-boolean upkey,downkey,leftkey,rightkey;
+boolean upkey, downkey, leftkey, rightkey;
+
+// game variables
+PVector loc;
+PVector vel;
+PVector gravity;
+
+float d;
 
 
-void setup(){
-  size(1000,1000);
+void setup() {
+  size(1000, 1000,FX2D);
+
+
+  d = 100;
   
-  mode = INTRO;
+  loc = new PVector(width/2,height/2);
+  
+  vel = new PVector(5,0);
+  vel.rotate(radians(random(0,360)));
+  
+  gravity = new PVector(0,1);
+
+  mode = GAME;
 }
-void draw(){
+void draw() {
   if (mode == INTRO) intro();
   else if (mode == GAME) game();
   else if (mode == PAUSE) pause();
