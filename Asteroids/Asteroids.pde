@@ -24,10 +24,14 @@ PVector gravity;
 
 float d;
 
+//game objects
+Spaceship player1;
+
 
 void setup() {
   size(1000, 1000,FX2D);
-
+  textAlign(CENTER,CENTER);
+  rectMode(CENTER);
 
   d = 100;
   
@@ -37,6 +41,8 @@ void setup() {
   vel.rotate(radians(random(0,360)));
   
   gravity = new PVector(0,1);
+  
+  player1 = new Spaceship();
 
   mode = GAME;
 }
