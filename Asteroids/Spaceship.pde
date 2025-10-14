@@ -44,18 +44,14 @@ class Spaceship {
 
   void move() {
     loc.add(vel);
-
-    println("dir" + dir.mag());
-    println(vel.mag());
-    println(upkey);
-
-    if (upkey) {
+ 
+    if (upkey && vel.mag() < 30) {
+      vel.mult(0.95);
       vel.add(dir);
-      if (!upkey){
-        vel.sub(dir);
-      }
+    } else{
+      vel.mult(0.95);
     }
-
+    
     if (leftkey) dir.rotate(-radians(5));
     if (rightkey) dir.rotate(radians(5));
 
@@ -74,6 +70,7 @@ class Spaceship {
   }
 
   void shoot() {
+    if (spacekey) bullets.add(new Bullet());
   }
 
   void checkForCollisions() {

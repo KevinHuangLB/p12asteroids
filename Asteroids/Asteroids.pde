@@ -1,5 +1,5 @@
 import processing.javafx.*;
-
+import java.util.ArrayList;
 
 // Color pallette
 color black = #000000;
@@ -15,7 +15,7 @@ final int PAUSE = 2;
 final int GAMEOVER = 3;
 
 // keyboard variables
-boolean upkey, downkey, leftkey, rightkey;
+boolean upkey, downkey, leftkey, rightkey, spacekey;
 
 // game variables
 PVector loc;
@@ -26,6 +26,9 @@ float d;
 
 //game objects
 Spaceship player1;
+
+//List of bullets
+ArrayList<Bullet> bullets;
 
 
 void setup() {
@@ -39,9 +42,10 @@ void setup() {
   
   vel = new PVector(5,0);
   vel.rotate(radians(random(0,360)));
-  
   gravity = new PVector(0,1);
   
+  //player variable
+  bullets = new ArrayList();
   player1 = new Spaceship();
 
   mode = GAME;
