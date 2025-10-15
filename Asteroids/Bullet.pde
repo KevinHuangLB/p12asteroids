@@ -1,15 +1,13 @@
-class Bullet {
+class Bullet extends GameObject{
 
-  PVector loc;
-  PVector vel;
-
+  int timer;
 
   Bullet() {
-    loc = new PVector(player1.loc.x, player1.loc.y);
-    vel = player1.dir.copy();
-    vel.setMag(10);
+    super(player1.loc.copy(),player1.dir.copy());
+    vel.setMag(25);
+    timer = 60;
   }
-
+ 
   void show() {
     fill(black);
     stroke(white);
@@ -19,5 +17,7 @@ class Bullet {
   
   void act(){
    loc.add(vel); 
+   timer--;
+   if (timer == 0) lives = 0;
   }
 }

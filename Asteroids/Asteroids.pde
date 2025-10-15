@@ -28,7 +28,7 @@ float d;
 Spaceship player1;
 
 //List of bullets
-ArrayList<Bullet> bullets;
+ArrayList<GameObject> objects;
 
 
 void setup() {
@@ -45,8 +45,9 @@ void setup() {
   gravity = new PVector(0,1);
   
   //player variable
-  bullets = new ArrayList();
+  objects = new ArrayList();
   player1 = new Spaceship();
+  objects.add(player1);
 
   mode = GAME;
 }
