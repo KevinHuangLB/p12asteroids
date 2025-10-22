@@ -32,22 +32,26 @@ ArrayList<GameObject> objects;
 
 
 void setup() {
-  size(1000, 1000,FX2D);
-  textAlign(CENTER,CENTER);
+  size(1000, 1000, FX2D);
+  textAlign(CENTER, CENTER);
   rectMode(CENTER);
 
   d = 100;
-  
-  loc = new PVector(width/2,height/2);
-  
-  vel = new PVector(5,0);
-  vel.rotate(radians(random(0,360)));
-  gravity = new PVector(0,1);
-  
+
+  loc = new PVector(width/2, height/2);
+
+  vel = new PVector(5, 0);
+  vel.rotate(radians(random(0, 360)));
+  gravity = new PVector(0, 1);
+
   //player variable
   objects = new ArrayList();
   player1 = new Spaceship();
   objects.add(player1);
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
+  objects.add(new Asteroid());
 
   mode = GAME;
 }

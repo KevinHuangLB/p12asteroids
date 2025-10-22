@@ -44,10 +44,10 @@ class Spaceship extends GameObject {
     loc.add(vel);
 
     if (upkey && vel.mag() < 30) {
-      vel.mult(0.925);
+      vel.mult(0.96);
       vel.add(dir);
     } else {
-      vel.mult(0.95);
+      vel.mult(0.97);
     }
 
     if (leftkey) dir.rotate(-radians(5));
