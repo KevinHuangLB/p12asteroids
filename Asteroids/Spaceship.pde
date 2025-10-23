@@ -25,9 +25,6 @@ class Spaceship extends GameObject {
     fill(black);
     stroke(white);
     strokeWeight(4);
-    //unit circle
-    line(10, -50, 10, 50);
-    line(-50, 0, 50, 0);
 
     triangle(-10, -15, -10, 15, 30, 0);
     //circle(12,0,3);
@@ -44,14 +41,19 @@ class Spaceship extends GameObject {
     loc.add(vel);
 
     if (upkey && vel.mag() < 30) {
-      vel.mult(0.96);
+      vel.mult(0.97);
       vel.add(dir);
-    } else {
+    } 
+    if (downkey && vel.mag() < 30){
+      vel.mult(0.93);
+      vel.sub(dir);
+    }
+    else {
       vel.mult(0.97);
     }
 
-    if (leftkey) dir.rotate(-radians(5));
-    if (rightkey) dir.rotate(radians(5));
+    if (leftkey) dir.rotate(-radians(6));
+    if (rightkey) dir.rotate(radians(6));
   }
 
   void shoot() {

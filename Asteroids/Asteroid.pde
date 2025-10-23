@@ -5,7 +5,7 @@ class Asteroid extends GameObject {
     vel.setMag(random(1, 3));
     vel.rotate(random(TWO_PI));
     lives = 3;
-    d = lives * 40;
+    d = lives * 30;
   }
 
   Asteroid(float lx, float ly, int life) {
@@ -13,7 +13,7 @@ class Asteroid extends GameObject {
     vel.setMag(random(1, 3));
     vel.rotate(random(TWO_PI));
     lives = life;
-    d = lives * 40;
+    d = lives * 30;
   }
 
   void show() {
