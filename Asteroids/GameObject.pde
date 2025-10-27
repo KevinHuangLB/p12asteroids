@@ -4,22 +4,45 @@ class GameObject {
   PVector vel;
   int lives;
   float d;
+  float xOffset, yOffset, wOffset, hOffset;
 
   GameObject(float lx, float ly, float vx, float vy) {
     loc = new PVector(lx, ly);
     vel = new PVector(vx, vy);
     lives = 1;
+    xOffset = 0;
+    yOffset = 0;
+    wOffset = 0;
+    hOffset = 0;
+  }
+    GameObject(float lx, float ly, float vx, float vy, float xo, float yo, float wo, float ho) {
+    loc = new PVector(lx, ly);
+    vel = new PVector(vx, vy);
+    lives = 1;
+    xOffset = xo;
+    yOffset = yo;
+    wOffset = wo;
+    hOffset = ho;
   }
   GameObject(PVector l, PVector v) {
     loc = l;
     vel = v;
     lives = 1;
+    xOffset = 0;
+    yOffset = 0;
+    wOffset = 0;
+    hOffset = 0;
   }
   GameObject(PVector l, PVector v, int lv) {
     loc = l;
     vel = v;
     lives = lv;
+    xOffset = 0;
+    yOffset = 0;
+    wOffset = 0;
+    hOffset = 0;
   }
+
 
   void act() {
   }
