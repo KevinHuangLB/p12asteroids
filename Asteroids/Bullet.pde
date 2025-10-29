@@ -6,8 +6,8 @@ class Bullet extends GameObject{
     super(player1.loc.copy(),player1.dir.copy());
     //vel = new PVector(mouseX - loc.x, mouseY - loc.y); // Aim with mouse rather than spaceship
     vel.setMag(25);
-    timer = 41;
-    d = 5;
+    timer = 20;
+    d = 20;
   }
  
   void show() {

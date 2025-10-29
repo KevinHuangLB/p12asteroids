@@ -41,26 +41,26 @@ class Spaceship extends GameObject {
     loc.add(vel);
 
     if (upkey && vel.mag() < 30) {
-      vel.mult(0.97);
+      vel.mult(0.90);
       vel.add(dir);
     } 
     if (downkey && vel.mag() < 30){
-      vel.mult(0.93);
+      vel.mult(0.86);
       vel.sub(dir);
     }
     else {
-      vel.mult(0.97);
+      vel.mult(0.90);
     }
 
-    if (leftkey) dir.rotate(-radians(6));
-    if (rightkey) dir.rotate(radians(6));
+    if (leftkey) dir.rotate(-radians(4));
+    if (rightkey) dir.rotate(radians(4));
   }
 
   void shoot() {
     cooldown--;
     if (spacekey && cooldown <= 0) {
       objects.add(new Bullet());
-      cooldown = 7;
+      cooldown = 13;
     }
   }
 
