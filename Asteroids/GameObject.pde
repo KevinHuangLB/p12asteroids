@@ -2,10 +2,22 @@ class GameObject {
 
   PVector loc;
   PVector vel;
+  PVector ro;
   int lives;
   float d;
-  float xOffset, yOffset, wOffset, hOffset;
+  float xOffset, yOffset, wOffset, hOffset, r;
 
+  GameObject(float lx, float ly, float vx, float vy, float r) {
+    loc = new PVector(lx, ly);
+    vel = new PVector(vx, vy);
+    ro= new PVector(1, 0);
+    this.r=r;
+    lives = 1;
+    xOffset = 0;
+    yOffset = 0;
+    wOffset = 0;
+    hOffset = 0;
+  }
   GameObject(float lx, float ly, float vx, float vy) {
     loc = new PVector(lx, ly);
     vel = new PVector(vx, vy);
@@ -15,7 +27,7 @@ class GameObject {
     wOffset = 0;
     hOffset = 0;
   }
-    GameObject(float lx, float ly, float vx, float vy, float xo, float yo, float wo, float ho) {
+  GameObject(float lx, float ly, float vx, float vy, float xo, float yo, float wo, float ho) {
     loc = new PVector(lx, ly);
     vel = new PVector(vx, vy);
     lives = 1;

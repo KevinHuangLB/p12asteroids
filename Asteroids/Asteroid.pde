@@ -2,7 +2,7 @@ class Asteroid extends GameObject {
 
   float shapeDecider;
   Asteroid() {
-    super(random(width), random(height), 1, 1);
+    super(random(width), random(height), 1, 1, random(2));
     vel.setMag(random(1, 3));
     vel.rotate(random(TWO_PI));
     lives = 3;
@@ -10,46 +10,65 @@ class Asteroid extends GameObject {
     shapeDecider = random(3);
   }
 
-  Asteroid(float lx, float ly, int life) {
-    super(lx, ly, 1, 1);
+  Asteroid(float lx, float ly, int life, float sd) {
+    super(lx, ly, 1, 1, random(2));
     vel.setMag(random(1, 3));
     vel.rotate(random(TWO_PI));
     lives = life;
     d = lives * 30;
-    shapeDecider = random(3);
+    shapeDecider = sd;
   }
 
-  void show() {
+  void show() { // use scale fix positioning of the asteroids
+    pushMatrix();
+    translate(loc.x, loc.y);
+    if (lives == 3) scale(1);
+    if (lives == 2) scale(0.6);
+    if (lives == 1) scale(0.3);
+    rotate(ro.heading());
     fill(black);
     stroke(white);
-    //circle(loc.x, loc.y, d);
     strokeWeight(2);
-    
-    //line(loc.x, loc.y, loc.x+d/2, loc.y);
-    //line(loc.x, loc.y, loc.x - d/3, loc.y + d/4);
-    //line(loc.x - d/3, loc.y + d/4, loc.x + d/4, loc.y + d);
-    //line(loc.x + d/4, loc.y + d, loc.x + d/2, loc.y + d/1.5);
-    //line(loc.x + d/2, loc.y + d/1.5, loc.x + d, loc.y + d/1.5);
-    //line(loc.x + d, loc.y + d/1.5, loc.x + d/2, loc.y + d/2);
-    //line(loc.x + d/2, loc.y + d/2, loc.x + d, loc.y);
-    //line(loc.x + d, loc.y, loc.x + d/2, loc.y);
-    
-    //line(loc.x, loc.y, loc.x + d/2, loc.y - d/4);
-    //line(loc.x + d/2, loc.y - d/4, loc.x + d/3, loc.y + d/ 1.5);
-    //line(loc.x + d/3, loc.y + d/1.5, loc.x + d/4, loc.y + d/1.75);
-    //line(loc.x + d/4, loc.y + d/1.75, loc.x - d/2, loc.y + d/1.5);
-    //line(loc.x - d/2, loc.y + d/1.5, loc.x - d, loc.y);
-    //line(loc.x - d, loc.y, loc.x - d/2, loc.y - d/2);
-    //line(loc.x - d/2, loc.y - d/2, loc.x, loc.y);
-    
-    line(loc.x, loc.y, loc.x, loc.y - d/3);
-    line(loc.x, loc.y - d/3, loc.x + d/4, loc.y - d/3);
-    line(loc.x + d/4, loc.y - d/3, loc.x + d/4, loc.y);
-    
 
+    //circle(0, 0, d);
+    if (shapeDecider < 1) {
+      line(0, 0, 0+45, 0);
+      line(0, 0, 0 - 30, 0 + 22.5);
+      line(0 - 30, 0 + 22.5, 0 + 22.5, 0 + 90);
+      line(0 + 22.5, 0 + 90, 0 + 45, 0 + 60);
+      line(0 + 45, 0 + 60, 0 + 90, 0 + 60);
+      line(0 + 90, 0 + 60, 0 + 45, 0 + 45);
+      line(0 + 45, 0 + 45, 0 + 90, 0);
+      line(0 + 90, 0, 0 + 45, 0);
+    } else if (shapeDecider > 2 && shapeDecider < 3) {
+      line(0, 0, 0 + 45, 0 - 22.5);
+      line(0 + 45, 0 - 22.5, 0 + 30, 0 + 60);
+      line(0 + 30, 0 + 60, 0 + 22.5, 0 + 56.25);
+      line(0 + 22.5, 0 + 56.25, 0 - 45, 0 + 60);
+      line(0 - 45, 0 + 60, 0 - 90, 0);
+      line(0 - 90, 0, 0 - 45, 0 - 45);
+      line(0 - 45, 0 - 45, 0, 0);
+    } else {
+      line(0, 0, 0, 0 - 30);
+      line(0, 0 - 30, 0 + 22.5, 0 - 30);
+      line(0 + 22.5, 0 - 30, 0 + 22.5, 0);
+      line(0 + 22.5, 0, 0 + 75, 0);
+      line(0 + 75, 0, 0 + 75, 0 + 18);
+      line(0 + 75, 0 + 18, 0 + 30, 0 + 75);
+      line(0 + 30, 0 + 75, 0 + 30, 0 + 90);
+      line(0 + 30, 0 + 90, 0 + 30, 0 + 90);
+      line(0 + 30, 0 + 90, 0 + 22.5, 0 + 90);
+      line(0 + 22.5, 0 + 90, 0 - 18, 0 + 75);
+      line(0 - 18, 0 + 75, 0 - 22.5, 0 + 22.5);
+      line(0 - 22.5, 0 + 22.5, 0 - 45, 0 + 22.5);
+      line(0 - 45, 0 + 22.5, 0 - 45, 0);
+      line(0 - 45, 0, 0, 0);
+    }
+    popMatrix();
   }
 
   void act() {
+    ro.rotate(radians(r));
     loc.add(vel);
     wrapAround();
     checkForCollisions();
@@ -60,9 +79,9 @@ class Asteroid extends GameObject {
     while (i < objects.size()) {
       GameObject obj = objects.get(i);
       if (obj instanceof Bullet) {
-        if (dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d/1.5 + obj.d/2) {
-          objects.add(new Asteroid(loc.x, loc.y, lives - 1));
-          objects.add(new Asteroid(loc.x, loc.y, lives - 1));
+        if (dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d + obj.d/2) {
+          objects.add(new Asteroid(loc.x, loc.y, lives - 1, shapeDecider));
+          objects.add(new Asteroid(loc.x, loc.y, lives - 1, shapeDecider));
           lives = 0;
           obj.lives = 0;
         }
