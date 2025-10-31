@@ -34,6 +34,9 @@ Spaceship player1;
 //List of bullets
 ArrayList<GameObject> objects;
 
+//UFO variables
+float ufoPos;
+
 
 void setup() {
   size(1000, 1000, FX2D);
@@ -47,6 +50,7 @@ void setup() {
   vel = new PVector(5, 0);
   vel.rotate(radians(random(0, 360)));
   gravity = new PVector(0, 1);
+  ufoPos = random(4);
 
   //player variable
   objects = new ArrayList();
@@ -55,7 +59,14 @@ void setup() {
   objects.add(new Asteroid());
   objects.add(new Asteroid());
   objects.add(new Asteroid());
-  objects.add(new Asteroid());
+  if (frameCount % 1000 == 0) {
+    if (ufoPos < 1) objects.add(new UFO(0,random(1000), 1));
+    if (ufoPos < 2 && ufoPos > 1) objects.add(new UFO(1000, random(1000), 2));
+    if (ufoPos < 3 && ufoPos > 2) objects.add(new UFO(random(1000),0,3));
+    if (ufoPos > 3) objects.add(new UFO(random(1000),1000,4));
+    // FDUCKING FIX THIS SHIT YOU IDIOT THIS SHIT DOES NOT WORK
+    // ADD A CONSTRUCTOR ARGUMENT WHERE YOU JUST WRITE OUT THE VELOCITY VALUE
+  }
 
   mode = GAME;
 }

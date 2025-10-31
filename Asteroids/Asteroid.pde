@@ -17,14 +17,18 @@ class Asteroid extends GameObject {
     lives = life;
     d = lives * 30;
     shapeDecider = sd;
+    println(lives, d, sd);
   }
 
   void show() { // use scale fix positioning of the asteroids
     pushMatrix();
     translate(loc.x, loc.y);
+
     if (lives == 3) scale(1);
     if (lives == 2) scale(0.6);
     if (lives == 1) scale(0.3);
+    if (lives == 0) scale(0.01);
+
     rotate(ro.heading());
     fill(black);
     stroke(white);

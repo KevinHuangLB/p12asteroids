@@ -7,7 +7,7 @@ class Bullet extends GameObject{
     //vel = new PVector(mouseX - loc.x, mouseY - loc.y); // Aim with mouse rather than spaceship
     vel.setMag(25);
     timer = 20;
-    d = 20;
+    d = 10;
   }
  
   void show() {
