@@ -3,6 +3,7 @@ void gameClicks() {
 }
 void game() {
   background(black);
+  count++;
 
   int i = 0;
   while (i < objects.size()) {
@@ -14,5 +15,12 @@ void game() {
     } else {
       i++;
     }
+  }
+
+  if (count % 300 == 0) {
+    if (ufoPos < 1) objects.add(new UFO(0, random(100,900), 6, 0));
+    if (ufoPos < 2 && ufoPos > 1) objects.add(new UFO(1000, random(100,900), -6, 0));
+    if (ufoPos < 3 && ufoPos > 2) objects.add(new UFO(random(100,900), 0, 0, 6));
+    if (ufoPos > 3) objects.add(new UFO(random(100,900), 1000, 0, -6));
   }
 }

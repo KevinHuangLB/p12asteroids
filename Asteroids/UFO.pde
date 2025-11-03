@@ -1,30 +1,33 @@
 class UFO extends GameObject {
-
-  boolean isLeftSide;
-  float direction;
-  UFO(float lx, float ly, float direc) {
-  // 1 = left to right
-  // 2 = right to left
-  // 3 = top to down
-  // 4 = down to top
-  super(lx,ly,6,0);
-d = 20;
+  int cooldown;
+  UFO(float lx, float ly, float vx, float vy) {
+    super(lx, ly, vx, vy);
+    d = 20;
   }
   void show() {
-    pushMatrix();
-    translate(loc.x, loc.y);
     drawUFO();
-    popMatrix();
   }
 
   void drawUFO() {
-    circle(0, 0, d);
+    pushMatrix();
+    translate(loc.x, loc.y);
+    rect(0,-10,60,70,25);
+    ellipse(0,0,150,20);
+    popMatrix();
   }
   void act() {
-    if (!isLeftSide)loc.add(vel);
-    if (isLeftSide)loc.sub(vel);
+    loc.add(vel);
     borders();
+    shoot();
     //checkForCollisions();
+  }
+  
+  void shoot(){
+    cooldown--;
+    if (cooldown <= 0){
+     objects.add(new Bullet(loc.x,loc.y,player1.loc.x,player1.loc.y));
+     cooldown = 50;
+    }
   }
 
   //void checkForCollisions() {
@@ -46,15 +49,20 @@ d = 20;
   void borders() {
     if (loc.x > width) {
       lives = 0;
+      ufoPos = random(4);
     }
     if (loc.x < 0) {
       lives = 0;
+      ufoPos = random(4);
     }
     if (loc.y > height) {
       lives = 0;
+      ufoPos = random(4);
+
     }
     if (loc.y < 0) {
       lives = 0;
+      ufoPos = random(4);
     }
   }
 }

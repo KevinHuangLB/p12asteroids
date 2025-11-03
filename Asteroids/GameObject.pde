@@ -7,7 +7,7 @@ class GameObject {
   float d;
   float xOffset, yOffset, wOffset, hOffset, r;
 
-  GameObject(float lx, float ly, float vx, float vy, float r) {
+  GameObject(float lx, float ly, float vx, float vy, float r) { //asteroid rotation
     loc = new PVector(lx, ly);
     vel = new PVector(vx, vy);
     ro= new PVector(1, 0);

@@ -9,6 +9,9 @@ class Bullet extends GameObject{
     timer = 20;
     d = 10;
   }
+  Bullet(float lx, float ly, float lx2, float ly2){ // FINISH BULLET CONSTRUCTOR!!!
+    
+  }
  
   void show() {
     fill(black);
