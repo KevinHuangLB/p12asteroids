@@ -9,7 +9,8 @@ class Bullet extends GameObject{
     timer = 20;
     d = 10;
   }
-  Bullet(float lx, float ly, float lx2, float ly2){ // FINISH BULLET CONSTRUCTOR!!!
+  Bullet(PVector l, PVector v){ // FINISH BULLET CONSTRUCTOR!!!
+    super(
     
   }
  
