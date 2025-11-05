@@ -6,6 +6,7 @@ class GameObject {
   int lives;
   float d;
   float xOffset, yOffset, wOffset, hOffset, r;
+  boolean shotByPlayer;
 
   GameObject(float lx, float ly, float vx, float vy, float r) { //asteroid rotation
     loc = new PVector(lx, ly);
@@ -36,7 +37,7 @@ class GameObject {
     wOffset = wo;
     hOffset = ho;
   }
-  GameObject(PVector l, PVector v) {
+  GameObject(PVector l, PVector v) { //player bullet
     loc = l;
     vel = v;
     lives = 1;

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 color black = #000000;
 color white = #FFFFFF;
 color red = #DD0000;
+color green = #9fee98;
 
 // Mode framework
 int mode;
@@ -28,6 +29,9 @@ PVector gravity;
 
 float d;
 
+// bullet variables
+boolean shotByPlayer;
+
 //game objects
 Spaceship player1;
 
@@ -37,7 +41,6 @@ ArrayList<GameObject> objects;
 //UFO variables
 float ufoPos;
 int count;
-
 
 void setup() {
   size(1000, 1000, FX2D);

@@ -17,7 +17,6 @@ class Asteroid extends GameObject {
     lives = life;
     d = lives * 30;
     shapeDecider = sd;
-    println(lives, d, sd);
   }
 
   void show() { // use scale fix positioning of the asteroids
@@ -76,6 +75,7 @@ class Asteroid extends GameObject {
     loc.add(vel);
     wrapAround();
     checkForCollisions();
+    checkForPlayerCollisions();
   }
 
   void checkForCollisions() {
@@ -83,7 +83,7 @@ class Asteroid extends GameObject {
     while (i < objects.size()) {
       GameObject obj = objects.get(i);
       if (obj instanceof Bullet) {
-        if (dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d + obj.d/2) {
+        if ((dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d + obj.d/2) && obj.shotByPlayer) {
           objects.add(new Asteroid(loc.x, loc.y, lives - 1, shapeDecider));
           objects.add(new Asteroid(loc.x, loc.y, lives - 1, shapeDecider));
           lives = 0;
@@ -93,4 +93,16 @@ class Asteroid extends GameObject {
       i++;
     }
   }
-}
+    void checkForPlayerCollisions() {
+      int i = 0;
+      while (i < objects.size()) {
+        GameObject obj = objects.get(i);
+        if (obj instanceof Spaceship) {
+          if ((dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d + obj.d/2)) {
+            obj.lives = 0;
+          }
+        }
+        i++;
+      }
+    }
+  }

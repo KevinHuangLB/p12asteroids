@@ -7,6 +7,7 @@ class Spaceship extends GameObject {
   Spaceship() {
     super(width/2, height/2, 0, 0);
     dir = new PVector(1, 0);
+    lives = 5;
     cooldown = 0;
   }
 
@@ -43,12 +44,11 @@ class Spaceship extends GameObject {
     if (upkey && vel.mag() < 30) {
       vel.mult(0.90);
       vel.add(dir);
-    } 
-    if (downkey && vel.mag() < 30){
+    }
+    if (downkey && vel.mag() < 30) {
       vel.mult(0.86);
       vel.sub(dir);
-    }
-    else {
+    } else {
       vel.mult(0.95);
     }
 
@@ -65,5 +65,18 @@ class Spaceship extends GameObject {
   }
 
   void checkForCollisions() {
+    int i = 0;
+    while (i < objects.size()) {
+      GameObject obj = objects.get(i);
+      if (obj instanceof Bullet) {
+        if ((dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d/2 + obj.d) && !obj.shotByPlayer) {
+          lives--;
+          obj.lives = 0;
+        }
+      }
+      i++;
+    }
   }
+
+  
 }
