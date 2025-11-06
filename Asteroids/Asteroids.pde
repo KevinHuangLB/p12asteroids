@@ -10,6 +10,7 @@ color black = #000000;
 color white = #FFFFFF;
 color red = #DD0000;
 color green = #9fee98;
+color lightGreen = #90ee90;
 
 // Mode framework
 int mode;
@@ -28,6 +29,7 @@ PVector vel;
 PVector gravity;
 
 float d;
+float lives;
 
 // bullet variables
 boolean shotByPlayer;
@@ -64,15 +66,6 @@ void setup() {
   objects.add(new Asteroid());
   objects.add(new Asteroid());
   objects.add(new Asteroid());
-
-  //ufo objects
-  //if (count % 100 == 0) {
-  //  if (ufoPos < 1) objects.add(new UFO(0, random(1000), 6, 0));
-  //  if (ufoPos < 2 && ufoPos > 1) objects.add(new UFO(1000, random(1000), -6, 0));
-  //  if (ufoPos < 3 && ufoPos > 2) objects.add(new UFO(random(1000), 0, 0, 6));
-  //  if (ufoPos > 3) objects.add(new UFO(random(1000), 1000, 0, -6));
-  //}
-
 
   mode = GAME;
 }

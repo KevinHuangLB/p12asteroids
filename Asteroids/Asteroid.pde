@@ -30,7 +30,7 @@ class Asteroid extends GameObject {
 
     rotate(ro.heading());
     fill(black);
-    stroke(white);
+    stroke(red);
     strokeWeight(2);
 
     //circle(0, 0, d);
@@ -67,6 +67,7 @@ class Asteroid extends GameObject {
       line(0 - 45, 0 + 22.5, 0 - 45, 0);
       line(0 - 45, 0, 0, 0);
     }
+    stroke(white);
     popMatrix();
   }
 
@@ -75,7 +76,6 @@ class Asteroid extends GameObject {
     loc.add(vel);
     wrapAround();
     checkForCollisions();
-    checkForPlayerCollisions();
   }
 
   void checkForCollisions() {
@@ -93,16 +93,4 @@ class Asteroid extends GameObject {
       i++;
     }
   }
-    void checkForPlayerCollisions() {
-      int i = 0;
-      while (i < objects.size()) {
-        GameObject obj = objects.get(i);
-        if (obj instanceof Spaceship) {
-          if ((dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d + obj.d/2)) {
-            obj.lives = 0;
-          }
-        }
-        i++;
-      }
-    }
-  }
+}

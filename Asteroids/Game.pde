@@ -3,8 +3,11 @@ void gameClicks() {
 }
 void game() {
   background(black);
-  count++;
-
+  
+  if (player1.lives == 0){
+   mode = GAMEOVER; 
+  }
+  
   int i = 0;
   while (i < objects.size()) {
     GameObject currentObject = objects.get(i);
@@ -17,7 +20,7 @@ void game() {
     }
   }
 
-  if (count % 500 == 0) {
+  if (frameCount % 500 == 0) {
     if (ufoPos < 1) objects.add(new UFO(0, random(100,900), 6, 0));
     if (ufoPos < 2 && ufoPos > 1) objects.add(new UFO(1000, random(100,900), -6, 0));
     if (ufoPos < 3 && ufoPos > 2) objects.add(new UFO(random(100,900), 0, 0, 6));
