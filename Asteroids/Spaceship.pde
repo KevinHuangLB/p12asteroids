@@ -3,6 +3,7 @@ class Spaceship extends GameObject {
   PVector dir; //direction
   int cooldown;
   int survivalCooldown;
+  int teleportCooldown=0;
 
   //constructor
   Spaceship() {
@@ -26,13 +27,27 @@ class Spaceship extends GameObject {
     fill(black);
     stroke(white);
     strokeWeight(4);
+    float m = map(teleportCooldown, 120, 0, 60, 0);
+
+    if (teleportCooldown > 0) {
+      rectMode(CORNER);
+      stroke(blue);
+      fill(blue);
+      rect(-20, -40, m, 5);
+      triangle(-10, -15, -10, 15, 30, 0);
+      rectMode(CENTER);
+    } else {
+      triangle(-10, -15, -10, 15, 30, 0);
+    }
+    stroke(white);
+    fill(black);
 
     if (survivalCooldown > 0) {
       stroke(lightGreen);
-      circle(0, 0, 50);
+      circle(5, 2, 100);
     }
-    if ((survivalCooldown > 160 && survivalCooldown < 180) || (survivalCooldown > 110 && survivalCooldown < 130)|| 
-    (survivalCooldown > 60 && survivalCooldown < 80) || (survivalCooldown > 10 && survivalCooldown < 30)) {
+    if ((survivalCooldown > 160 && survivalCooldown < 180) || (survivalCooldown > 110 && survivalCooldown < 130)||
+      (survivalCooldown > 60 && survivalCooldown < 80) || (survivalCooldown > 10 && survivalCooldown < 30)) {
       stroke(red);
       triangle(-10, -15, -10, 15, 30, 0);
     } else {
@@ -47,6 +62,10 @@ class Spaceship extends GameObject {
     shoot();
     checkForCollisions();
     checkForAsteroidCollisions();
+    if (tpKey && teleportCooldown <= 0) {
+      teleport();
+      teleportCooldown=120;
+    } else if (teleportCooldown > 0) teleportCooldown--;
     wrapAround();
     fill(white);
     text("Lives: "+lives, 100, 100);
@@ -56,18 +75,18 @@ class Spaceship extends GameObject {
     loc.add(vel);
 
     if (upkey && vel.mag() < 30) {
-      vel.mult(0.90);
+      vel.mult(0.86);
       vel.add(dir);
     }
     if (downkey && vel.mag() < 30) {
-      vel.mult(0.86);
+      vel.mult(0.82);
       vel.sub(dir);
     } else {
       vel.mult(0.95);
     }
 
-    if (leftkey) dir.rotate(-radians(4));
-    if (rightkey) dir.rotate(radians(4));
+    if (leftkey) dir.rotate(-radians(3));
+    if (rightkey) dir.rotate(radians(3));
   }
 
   void shoot() {
@@ -83,7 +102,7 @@ class Spaceship extends GameObject {
     while (i < objects.size()) {
       GameObject obj = objects.get(i);
       if (obj instanceof Bullet) {
-        if ((dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d/2 + obj.d) && !obj.shotByPlayer && survivalCooldown <= 0) {
+        if ((dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d + obj.d) && !obj.shotByPlayer && survivalCooldown <= 0) {
           lives--;
           obj.lives = 0;
           survivalCooldown = 180;
@@ -100,6 +119,23 @@ class Spaceship extends GameObject {
         if ((dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d + obj.d) && survivalCooldown <= 0) {
           lives--;
           survivalCooldown = 180;
+        }
+      }
+      i++;
+    }
+  }
+
+  void teleport() {
+    float x = random(1000);
+    float y = random(1000);
+
+    int i = 0;
+    while (i < objects.size()) {
+      GameObject obj = objects.get(i);
+      if (obj instanceof Asteroid) {
+        if ((dist(x, y, obj.loc.x, obj.loc.y) > obj.d/2 + 100) ) {
+          loc.x=x;
+          loc.y=y;
         }
       }
       i++;

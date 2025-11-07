@@ -24,8 +24,8 @@ class Asteroid extends GameObject {
     translate(loc.x, loc.y);
 
     if (lives == 3) scale(1);
-    if (lives == 2) scale(0.6);
-    if (lives == 1) scale(0.3);
+    if (lives == 2) scale(0.75);
+    if (lives == 1) scale(0.5);
     if (lives == 0) scale(0.01);
 
     rotate(ro.heading());
@@ -35,6 +35,7 @@ class Asteroid extends GameObject {
 
     //circle(0, 0, d);
     if (shapeDecider < 1) {
+      strokeWeight(2);
       line(0, 0, 0+45, 0);
       line(0, 0, 0 - 30, 0 + 22.5);
       line(0 - 30, 0 + 22.5, 0 + 22.5, 0 + 90);
@@ -44,6 +45,7 @@ class Asteroid extends GameObject {
       line(0 + 45, 0 + 45, 0 + 90, 0);
       line(0 + 90, 0, 0 + 45, 0);
     } else if (shapeDecider > 2 && shapeDecider < 3) {
+      strokeWeight(2);
       line(0, 0, 0 + 45, 0 - 22.5);
       line(0 + 45, 0 - 22.5, 0 + 30, 0 + 60);
       line(0 + 30, 0 + 60, 0 + 22.5, 0 + 56.25);
@@ -52,6 +54,7 @@ class Asteroid extends GameObject {
       line(0 - 90, 0, 0 - 45, 0 - 45);
       line(0 - 45, 0 - 45, 0, 0);
     } else {
+      strokeWeight(2);
       line(0, 0, 0, 0 - 30);
       line(0, 0 - 30, 0 + 22.5, 0 - 30);
       line(0 + 22.5, 0 - 30, 0 + 22.5, 0);

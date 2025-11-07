@@ -11,6 +11,7 @@ color white = #FFFFFF;
 color red = #DD0000;
 color green = #9fee98;
 color lightGreen = #90ee90;
+color blue = #6495ED;
 
 // Mode framework
 int mode;
@@ -21,7 +22,7 @@ final int PAUSE = 2;
 final int GAMEOVER = 3;
 
 // keyboard variables
-boolean upkey, downkey, leftkey, rightkey, spacekey;
+boolean upkey, downkey, leftkey, rightkey, spacekey, tpKey;
 
 // game variables
 PVector loc;

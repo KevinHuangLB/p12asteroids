@@ -13,6 +13,7 @@ class UFO extends GameObject {
   void drawUFO() {
     pushMatrix();
     translate(loc.x, loc.y);
+    fill(black);
     stroke(green);
     scale(0.5);
     rect(0,-10,60,70,25);
