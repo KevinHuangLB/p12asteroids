@@ -36,9 +36,8 @@ class Spaceship extends GameObject {
       rect(-20, -40, m, 5);
       triangle(-10, -15, -10, 15, 30, 0);
       rectMode(CENTER);
-    } else {
-      triangle(-10, -15, -10, 15, 30, 0);
     }
+
     stroke(white);
     fill(black);
 
@@ -49,11 +48,10 @@ class Spaceship extends GameObject {
     if ((survivalCooldown > 160 && survivalCooldown < 180) || (survivalCooldown > 110 && survivalCooldown < 130)||
       (survivalCooldown > 60 && survivalCooldown < 80) || (survivalCooldown > 10 && survivalCooldown < 30)) {
       stroke(red);
-      triangle(-10, -15, -10, 15, 30, 0);
     } else {
       stroke(white);
-      triangle(-10, -15, -10, 15, 30, 0);
     }
+    triangle(-10, -15, -10, 15, 30, 0);
   }
 
   void act() {
