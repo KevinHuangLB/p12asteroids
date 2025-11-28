@@ -29,22 +29,23 @@ class Spaceship extends GameObject {
     strokeWeight(4);
     float m = map(teleportCooldown, 120, 0, 60, 0);
 
+
+    if (survivalCooldown > 0) {
+      println(teleportCooldown);
+      stroke(lightGreen);
+      circle(5, 2, 100);
+    }
+
     if (teleportCooldown > 0) {
       rectMode(CORNER);
       stroke(blue);
       fill(blue);
       rect(-20, -40, m, 5);
-      triangle(-10, -15, -10, 15, 30, 0);
       rectMode(CENTER);
     }
 
     stroke(white);
     fill(black);
-
-    if (survivalCooldown > 0) {
-      stroke(lightGreen);
-      circle(5, 2, 100);
-    }
     if ((survivalCooldown > 160 && survivalCooldown < 180) || (survivalCooldown > 110 && survivalCooldown < 130)||
       (survivalCooldown > 60 && survivalCooldown < 80) || (survivalCooldown > 10 && survivalCooldown < 30)) {
       stroke(red);

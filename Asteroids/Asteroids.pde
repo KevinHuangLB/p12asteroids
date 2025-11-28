@@ -48,6 +48,7 @@ int count;
 void setup() {
   size(1000, 1000, FX2D);
   textAlign(CENTER, CENTER);
+  textSize(20);
   rectMode(CENTER);
   frameRate(60);
 
