@@ -5,18 +5,18 @@ void mouseReleased() {
   else if (mode == GAMEOVER) gameOverClicks();
 }
 void keyPressed() {
-  if (key == 'w' || key == 'W') upkey = true;
-  if (key == 's' || key == 'S') downkey = true;
-  if (key == 'a' || key == 'A') leftkey = true;
-  if (key == 'd' || key == 'D') rightkey = true;
-  if (key == ' ') spacekey = true;
-  if (key == 'f' || key == 'F') tpKey = true;
+  if (key == 'w' || key == 'W' && mode == GAME) upkey = true;
+  if (key == 's' || key == 'S' && mode == GAME) downkey = true;
+  if (key == 'a' || key == 'A' && mode == GAME) leftkey = true;
+  if (key == 'd' || key == 'D' && mode == GAME) rightkey = true;
+  if (key == ' ' && mode == GAME) spacekey = true;
+  if (key == 'f' || key == 'F' && mode == GAME) tpkey = true;
 }
 void keyReleased() {
-  if (key == 'w' || key == 'W') upkey = false;
-  if (key == 's' || key == 'S') downkey = false;
-  if (key == 'a' || key == 'A') leftkey = false;
-  if (key == 'd' || key == 'D') rightkey = false;
-  if (key == ' ') spacekey = false;
-  if (key == 'f' || key == 'F') tpKey = false;
+  if (key == 'w' || key == 'W' && mode == GAME) upkey = false;
+  if (key == 's' || key == 'S' && mode == GAME) downkey = false;
+  if (key == 'a' || key == 'A' && mode == GAME) leftkey = false;
+  if (key == 'd' || key == 'D' && mode == GAME) rightkey = false;
+  if (key == ' ' && mode == GAME) spacekey = false;
+  if (key == 'f' || key == 'F' && mode == GAME) tpkey = false;
 }

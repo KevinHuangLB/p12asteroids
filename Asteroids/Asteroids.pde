@@ -1,6 +1,3 @@
-// Kevin Huang
-// 2-4
-
 
 import processing.javafx.*;
 import java.util.ArrayList;
@@ -12,6 +9,8 @@ color red = #DD0000;
 color green = #9fee98;
 color lightGreen = #90ee90;
 color blue = #6495ED;
+color lightOrange = #FDAA48;
+color darkRed = #8b0000;
 
 // Mode framework
 int mode;
@@ -22,7 +21,7 @@ final int PAUSE = 2;
 final int GAMEOVER = 3;
 
 // keyboard variables
-boolean upkey, downkey, leftkey, rightkey, spacekey, tpKey;
+boolean upkey, downkey, leftkey, rightkey, spacekey, tpkey;
 
 // game variables
 PVector loc;
@@ -69,7 +68,7 @@ void setup() {
   objects.add(new Asteroid());
   objects.add(new Asteroid());
 
-  mode = GAME;
+  mode = INTRO;
 }
 void draw() {
   if (mode == INTRO) intro();

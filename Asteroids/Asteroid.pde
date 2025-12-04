@@ -1,6 +1,7 @@
 class Asteroid extends GameObject {
 
   float shapeDecider;
+  
   Asteroid() {
     super(random(width), random(height), 1, 1, random(2));
     vel.setMag(random(1, 3));
@@ -87,13 +88,21 @@ class Asteroid extends GameObject {
       GameObject obj = objects.get(i);
       if (obj instanceof Bullet) {
         if ((dist(loc.x, loc.y, obj.loc.x, obj.loc.y) < d + obj.d/2) && obj.shotByPlayer) {
+          for (int p = 0; p < 20; p++) {
+            objects.add(new Particle(loc.x, loc.y, random(-2, 2), random(-2, 2)));
+          }
           objects.add(new Asteroid(loc.x, loc.y, lives - 1, shapeDecider));
           objects.add(new Asteroid(loc.x, loc.y, lives - 1, shapeDecider));
           lives = 0;
           obj.lives = 0;
+          player1.killCount++;
         }
+      }
+      if (player1.killCount == 21){
+       mode = GAMEOVER; 
       }
       i++;
     }
   }
+  
 }

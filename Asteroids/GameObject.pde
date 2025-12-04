@@ -31,7 +31,7 @@ class GameObject {
     GameObject(float lx, float ly, float vx, float vy, boolean isSpaceship) { 
     loc = new PVector(lx, ly);
     vel = new PVector(vx, vy);
-    lives = 5;
+    lives = 3;
     xOffset = 0;
     yOffset = 0;
     wOffset = 0;

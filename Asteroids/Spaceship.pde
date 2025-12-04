@@ -4,12 +4,14 @@ class Spaceship extends GameObject {
   int cooldown;
   int survivalCooldown;
   int teleportCooldown=0;
+  int killCount;
 
   //constructor
   Spaceship() {
     super(width/2, height/2, 0, 0, true);
     dir = new PVector(1, 0);
     cooldown = 0;
+    killCount = 0;
   }
 
   //behaviour functions
@@ -53,6 +55,7 @@ class Spaceship extends GameObject {
       stroke(white);
     }
     triangle(-10, -15, -10, 15, 30, 0);
+    stroke(white);
   }
 
   void act() {
@@ -61,13 +64,33 @@ class Spaceship extends GameObject {
     shoot();
     checkForCollisions();
     checkForAsteroidCollisions();
-    if (tpKey && teleportCooldown <= 0) {
+    if (tpkey && teleportCooldown <= 0) {
       teleport();
       teleportCooldown=120;
     } else if (teleportCooldown > 0) teleportCooldown--;
     wrapAround();
     fill(white);
-    text("Lives: "+lives, 100, 100);
+    //text("Lives: "+lives, 100, 100);
+    noFill();
+    strokeWeight(2);
+    rectMode(CORNER);
+    rect(100, 100, 100, 20);
+    if (lives == 3) {
+      fill(lightGreen);
+      noStroke();
+      rect(101, 101, 100, 18);
+    }
+    if (lives == 2) {
+      fill(lightOrange);
+      noStroke();
+      rect(101, 101, 66, 18);
+    }
+    if (lives == 1) {
+      fill(darkRed);
+      noStroke();
+      rect(101, 101, 33, 18);
+    }
+    rectMode(CENTER);
   }
 
   void move() {
@@ -76,6 +99,9 @@ class Spaceship extends GameObject {
     if (upkey && vel.mag() < 30) {
       vel.mult(0.86);
       vel.add(dir);
+      for (int p = 0; p < 6; p++) {
+        objects.add(new Particle(loc.x + random(-12, 12), loc.y + random(-12, 12), -1 * vel.x, -1 * vel.y, 6));
+      }
     }
     if (downkey && vel.mag() < 30) {
       vel.mult(0.82);
